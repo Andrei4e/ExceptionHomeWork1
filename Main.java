@@ -1,59 +1,66 @@
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.util.Scanner;
 
 public class Main {
     
     public static void main(String[] args) throws Exception {
-        int a = Division(10, 0);
-        FileNotFound();
-        NullPointer();
-        int[] arr1 = new int[] {9,8,7,6,5};
-        int[] arr2 = new int[] {5,4,3,2};
-        int[] arr3 = Arrays(arr1, arr2);
+        Task1();
+        Task2();
+        Task3();
+        Task4();
     }
 
-    public static int Division(int num1, int num2) {
-        int result = 0;
+    //Задание1
+    public static void Task1() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите дробное число: ");
+        float name;
         try {
-            result = num1/num2;
+            name = Float.parseFloat(in.nextLine());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            System.out.println("Введенное значение нельзя реобразовать в дробное число");
+            Task1();
         }
-        
-        return result;
     }
 
-    public static void FileNotFound() {		
-        File f = new File("test");
-        FileReader fr;
+    //Задание2
+    public static void Task2() {
         try {
-            fr = new FileReader(f);
-            System.out.println(fr);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
+            int d = 0;
+            int[] intArray = new int[] {1,2};
+            double catchedRes1 = intArray[8] / d;
+            System.out.println("catchedRes1 = " + catchedRes1);
+        } catch (ArithmeticException | IndexOutOfBoundsException e) {
+            System.out.println("Catching exception: " + e);
+        }         
+    }
+
+    //Задание3
+    public static void Task3() {
+        try {
+            int a = 90;
+            int b = 3;
+            System.out.println(a / b);
+            printSum(23, 234);
+            int[] abc = { 1, 2 };
+            abc[3] = 9;
+        } catch (NullPointerException ex) {
+            System.out.println("Указатель не может указывать на null!");
+        } catch (IndexOutOfBoundsException ex) {
+            System.out.println("Массив выходит за пределы своего размера!");
+        }             
+    }
+
+    public static void printSum(Integer a, Integer b) {
+        System.out.println(a + b);
      }
-
-    public static void NullPointer() {		
-        String str=null;
-        try {
-            System.out.println("Length :"+str.length()); 
-        } catch (Exception e) {
-            System.out.println("Отсутствует ссылка на объект");
-        }        
-    }
-
-    public static int[] Arrays(int[] array1, int[] array2) throws Exception {
-        if (array1.length != array2.length) {
-            throw new Exception("Массивы разной длинны");
-        }
-        int[] array3 = new int[array1.length];
-        for (int i = 0; i < array1.length; i++){
-            array3[i] = array1[i] - array2[i];
-        }  
-        return array3;  
+     
+    //Задание3
+    public static void Task4() throws Exception {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Введите непустую строку: ");
+        String name = in.nextLine();
+        if (name.isEmpty())
+            throw new Exception("Нельзя вводить устую строку");       
     }
  
 }
